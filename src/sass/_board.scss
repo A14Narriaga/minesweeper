@@ -1,0 +1,38 @@
+@mixin board {
+  .board {
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    background-color: $primary-color;
+    border-radius: 0.2rem;
+    width: 2 * $board-size + 1.1rem;
+    height: 2 * $board-size + 1.1rem;
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat($board-size, 1fr);
+    gap: 0.05rem;
+    .box {
+      background-color: $box-color;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 0.1rem;
+      line-height: 1rem;
+      text-align: center;
+      border: 0.5px solid rgb(207, 207, 207);
+      &:hover {
+        background-color: $hover-box-color;
+      }
+      i {
+        color: rgb(41, 36, 36);
+        font-size: 1.2rem;
+      }
+    }
+    .visible {
+      background-color: rgba(199, 199, 199, 0.568);
+      color: whitesmoke;
+      border: 0;
+      &:hover {
+        background-color: rgba(199, 199, 199, 0.568);
+      }
+    }
+  }
+}

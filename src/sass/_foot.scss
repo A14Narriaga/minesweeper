@@ -1,0 +1,27 @@
+@mixin foot {
+  .foot {
+    margin: 0 auto;
+    width: 130px;
+    color: $primary-color;
+    font-family: sans-serif;
+    font-style: italic;
+    .by {
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+    .social {
+      margin-top: 0.7rem;
+      display: flex;
+      justify-content: space-around;
+      a i {
+        color: $primary-color;
+        font-size: 1.5rem;
+        &:hover {
+          cursor: pointer;
+          color: $primary-color-hover;
+        }
+      }
+    }
+  }
+}
