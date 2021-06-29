@@ -1,6 +1,6 @@
 const Settings = () => {
   return (
-    <section className="settings hidde">
+    <section className="settings">
       <div className="modal-btns">
         <i className="help far fa-question-circle"></i>
         <i className="close fas fa-times"></i>
@@ -9,8 +9,18 @@ const Settings = () => {
         <p>Settings</p>
       </div>
       <div className="themes">
-        <div className="opc">
-          <p>Theme</p>
+        <p>Theme</p>
+        <div className="theme-options">
+          <div className="theme-opc">
+            <div className="theme-white">
+              <div className="theme-blue"></div>
+            </div>
+          </div>
+          <div className="theme-opc">
+            <div className="theme-white">
+              <div className="theme-blue"></div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="mine-type">
