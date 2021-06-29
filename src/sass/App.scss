@@ -3,11 +3,13 @@
 @import "./controls";
 @import "./board";
 @import "./foot";
+@import "./settings";
 
 $background-color: rgb(223, 223, 223);
 $primary-color: rgb(0, 86, 126);
-$primary-color-hover: rgba(0, 86, 126, 0.863);
+$primary-color-hover: rgba(0, 115, 168, 0.863);
 $text-color: rgb(207, 207, 207);
+$background-color-blur: rgba(223, 223, 223, 0.733);
 
 $board-size: 3;
 $box-color: rgb(207, 207, 207);
@@ -34,4 +36,5 @@ body {
   @include controls;
   @include board;
   @include foot;
+  @include settings;
 }
