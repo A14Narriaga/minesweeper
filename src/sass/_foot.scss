@@ -1,10 +1,9 @@
 @mixin foot {
   .foot {
     margin: 0 auto;
-    width: 130px;
+    width: 135px;
     color: $primary-color;
     font-family: sans-serif;
-    font-style: italic;
     .by {
       font-size: 1.1rem;
       margin-top: 1.8rem;
