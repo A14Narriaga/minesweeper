@@ -17,10 +17,18 @@
       justify-content: flex-end;
       .help {
         font-size: 1.3rem;
+        &:hover {
+          cursor: pointer;
+          color: $primary-color;
+        }
       }
       .close {
         margin-left: 1rem;
         font-size: 1.4rem;
+        &:hover {
+          cursor: pointer;
+          color: $primary-color;
+        }
       }
     }
     .title {
@@ -112,12 +120,12 @@
               -webkit-appearance: none;
               width: 73%;
               height: 10px;
-              border-radius: 5px;  
+              border-radius: 5px;
               background: #8d8d8d;
               outline: none;
               opacity: 0.7;
-              -webkit-transition: .2s;
-              transition: opacity .2s;
+              -webkit-transition: 0.2s;
+              transition: opacity 0.2s;
               &::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 appearance: none;

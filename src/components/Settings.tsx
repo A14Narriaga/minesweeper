@@ -1,9 +1,21 @@
-const Settings = () => {
+import { useState } from "react"
+
+const Settings = ({
+  handleShowSettings,
+  showSettings,
+}: {
+  handleShowSettings: any
+  showSettings: string
+}) => {
+  const [widthValue, setWidthValue] = useState(1)
+  const [heightValue, setHeightValue] = useState(1)
+  const [mineValue, setMineValue] = useState(1)
+
   return (
-    <section className="settings">
+    <section className={`settings ${showSettings}`}>
       <div className="modal-btns">
         <i className="help far fa-question-circle"></i>
-        <i className="close fas fa-times"></i>
+        <i onClick={handleShowSettings} className="close fas fa-times"></i>
       </div>
       <div className="title">
         <p>Settings</p>
@@ -46,52 +58,53 @@ const Settings = () => {
         </button>
         <button className="level-opc opc-selected">
           <p>
-            Normal - 10x10 <i className="fas fa-virus"> 10</i>
+            Normal - 16x16 <i className="fas fa-virus"> 40</i>
           </p>
         </button>
         <button className="level-opc">
           <p>
-            Hard - 10x10 <i className="fas fa-virus"> 10</i>
+            Hard - 16x30 <i className="fas fa-virus"> 99</i>
           </p>
         </button>
         <button className="level-opc">
-          <p>Custom</p>
+          <p>
+            Custom - {`${widthValue}x${heightValue}`}{" "}
+            <i className="fas fa-virus">{` ${mineValue}`}</i>
+          </p>
           <section className="custom">
             <div className="sider-wrapper">
               <i className="fas fa-arrows-alt-v"></i>
               <input
                 type="range"
-                min="1"
-                max="100"
-                value="50"
+                min="10"
+                max="50"
+                step="1"
+                onChange={e => setWidthValue(w => Number(e.target.value))}
+                value={widthValue}
                 className="slider"
-                id="myRange"
               ></input>
-              <span> 00</span>
             </div>
             <div className="sider-wrapper">
               <i className="fas fa-arrows-alt-h"></i>
               <input
                 type="range"
-                min="1"
-                max="100"
-                value="50"
+                min="10"
+                max="50"
+                onChange={e => setHeightValue(h => Number(e.target.value))}
+                value={heightValue}
                 className="slider"
-                id="myRange"
               ></input>
-              <span> 00</span>
             </div>
             <div className="sider-wrapper">
               <i className="fas fa-virus"></i>
               <input
                 type="range"
                 min="1"
-                max="100"
-                value="50"
+                max="200"
+                onChange={e => setMineValue(m => Number(e.target.value))}
+                value={mineValue}
                 className="slider"
-                id="myRange"
               ></input>
-              <span> 00</span>
             </div>
           </section>
         </button>
