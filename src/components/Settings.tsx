@@ -7,9 +7,13 @@ const Settings = ({
   handleShowSettings: any
   showSettings: string
 }) => {
-  const [widthValue, setWidthValue] = useState(1)
-  const [heightValue, setHeightValue] = useState(1)
-  const [mineValue, setMineValue] = useState(1)
+  const minWidth = 10
+  const minHeight = 10
+  const minMines = 1
+  const [width, setWidth] = useState(minWidth)
+  const [height, setHeight] = useState(minHeight)
+  const [mines, setMines] = useState(minMines)
+  const maxMines = (width*height)/2;
 
   return (
     <section className={`settings ${showSettings}`}>
@@ -68,19 +72,21 @@ const Settings = ({
         </button>
         <button className="level-opc">
           <p>
-            Custom - {`${widthValue}x${heightValue}`}{" "}
-            <i className="fas fa-virus">{` ${mineValue}`}</i>
+            Custom - {`${width}x${height}`} <i className="fas fa-virus">{` ${mines}`}</i>
           </p>
           <section className="custom">
             <div className="sider-wrapper">
               <i className="fas fa-arrows-alt-v"></i>
               <input
                 type="range"
-                min="10"
+                min={minWidth}
                 max="50"
                 step="1"
-                onChange={e => setWidthValue(w => Number(e.target.value))}
-                value={widthValue}
+                onChange={e => {
+                  setWidth(w => Number(e.target.value))
+                  setMines(m => m <= maxMines ? m : maxMines)
+                }}
+                value={width}
                 className="slider"
               ></input>
             </div>
@@ -88,10 +94,13 @@ const Settings = ({
               <i className="fas fa-arrows-alt-h"></i>
               <input
                 type="range"
-                min="10"
+                min={minHeight}
                 max="50"
-                onChange={e => setHeightValue(h => Number(e.target.value))}
-                value={heightValue}
+                onChange={e => {
+                  setHeight(h => Number(e.target.value))
+                  setMines(m => m <= maxMines ? m : maxMines)
+                }}
+                value={height}
                 className="slider"
               ></input>
             </div>
@@ -99,10 +108,10 @@ const Settings = ({
               <i className="fas fa-virus"></i>
               <input
                 type="range"
-                min="1"
-                max="200"
-                onChange={e => setMineValue(m => Number(e.target.value))}
-                value={mineValue}
+                min={minMines}
+                max={maxMines}
+                onChange={e => setMines(m => Number(e.target.value))}
+                value={mines}
                 className="slider"
               ></input>
             </div>
