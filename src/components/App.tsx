@@ -8,16 +8,17 @@ import Settings from "./Settings"
 
 const App = () => {
   const [showSettings, setShowSettings] = useState("hidde")
+  const [mine, setMine] = useState("virus")
 
   const handleShowSettings = () => setShowSettings(s => (s === "hidde" ? "" : "hidde"))
 
   return (
     <>
-      <Timer handleShowSettings={handleShowSettings} />
+      <Timer handleShowSettings={handleShowSettings} mine={mine} />
       <Controls />
-      <Board />
+      <Board mine={mine}/>
       <Social />
-      <Settings handleShowSettings={handleShowSettings} showSettings={showSettings} />
+      <Settings handleShowSettings={handleShowSettings} showSettings={showSettings} mine={mine} setMine={setMine}/>
     </>
   )
 }

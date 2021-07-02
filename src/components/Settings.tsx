@@ -3,9 +3,13 @@ import { useState } from "react"
 const Settings = ({
   handleShowSettings,
   showSettings,
+  mine,
+  setMine,
 }: {
   handleShowSettings: any
   showSettings: string
+  mine: string
+  setMine: any
 }) => {
   const minWidth = 10
   const minHeight = 10
@@ -13,7 +17,7 @@ const Settings = ({
   const [width, setWidth] = useState(minWidth)
   const [height, setHeight] = useState(minHeight)
   const [mines, setMines] = useState(minMines)
-  const maxMines = (width*height)/2;
+  const maxMines = (width * height) / 2
 
   return (
     <section className={`settings ${showSettings}`}>
@@ -42,13 +46,13 @@ const Settings = ({
       <div className="setting">
         <p>Mine</p>
         <div className="options">
-          <button className="opc">
-            <i className="fas fa-virus" />
+          <button onClick={() => setMine("virus")} className="opc">
+            <i className={`fa fa-virus`} />
           </button>
-          <button className="opc opc-selected">
+          <button onClick={() => setMine("paw")} className="opc opc-selected">
             <i className="fas fa-paw" />
           </button>
-          <button className="opc">
+          <button onClick={() => setMine("bahai")} className="opc">
             <i className="fas fa-bahai" />
           </button>
         </div>
@@ -57,22 +61,22 @@ const Settings = ({
         <p>Level</p>
         <button className="level-opc">
           <p>
-            Easy - 10x10 <i className="fas fa-virus"> 10</i>
+            Easy - 10x10 <i className={`fa fa-${mine}`}> 10</i>
           </p>
         </button>
         <button className="level-opc opc-selected">
           <p>
-            Normal - 16x16 <i className="fas fa-virus"> 40</i>
+            Normal - 16x16 <i className={`fa fa-${mine}`}> 40</i>
           </p>
         </button>
         <button className="level-opc">
           <p>
-            Hard - 16x30 <i className="fas fa-virus"> 99</i>
+            Hard - 16x30 <i className={`fa fa-${mine}`}> 99</i>
           </p>
         </button>
         <button className="level-opc">
           <p>
-            Custom - {`${width}x${height}`} <i className="fas fa-virus">{` ${mines}`}</i>
+            Custom - {`${width}x${height}`} <i className={`fa fa-${mine}`}>{` ${mines}`}</i>
           </p>
           <section className="custom">
             <div className="sider-wrapper">
@@ -84,7 +88,7 @@ const Settings = ({
                 step="1"
                 onChange={e => {
                   setWidth(w => Number(e.target.value))
-                  setMines(m => m <= maxMines ? m : maxMines)
+                  setMines(m => (m <= maxMines ? m : maxMines))
                 }}
                 value={width}
                 className="slider"
@@ -98,14 +102,14 @@ const Settings = ({
                 max="50"
                 onChange={e => {
                   setHeight(h => Number(e.target.value))
-                  setMines(m => m <= maxMines ? m : maxMines)
+                  setMines(m => (m <= maxMines ? m : maxMines))
                 }}
                 value={height}
                 className="slider"
               ></input>
             </div>
             <div className="sider-wrapper">
-              <i className="fas fa-virus"></i>
+              <i className={`fa fa-${mine}`}></i>
               <input
                 type="range"
                 min={minMines}

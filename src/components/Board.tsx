@@ -1,10 +1,10 @@
-const Board = () => {
+const Board = ({mine}:{mine:string}) => {
 
     const changeVisibility = (id: string) => {
         const btn = document.getElementById(id);
         if(btn) {
             btn.classList.add("visible");
-            btn.innerHTML = '<i class="fas fa-virus"></i>';
+            btn.innerHTML = '<i class="fa fa-'+mine+'"></i>';
         }
     }
 

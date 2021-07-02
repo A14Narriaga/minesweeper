@@ -1,8 +1,8 @@
-const Timer = ({handleShowSettings} : {handleShowSettings:any}) => {
+const Timer = ({ handleShowSettings, mine }: { handleShowSettings: any; mine: string }) => {
   return (
     <section className="timer-wrapper">
       <p className="virus-count">
-        <i className="fas fa-virus"> 01</i>
+        <i className={`fa fa-${mine}`}> 01</i>
       </p>
       <button className="clock">00:00</button>
       <button className="settings-btn" onClick={handleShowSettings}>
