@@ -19,6 +19,7 @@ const App = () => {
       <Board mine={mine} />
       <Social />
       <Settings
+        handleShowSettings={handleShowSettings}
         showSettings={showSettings}
         mine={mine}
         setMine={setMine}
