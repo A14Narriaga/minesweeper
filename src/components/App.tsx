@@ -16,9 +16,13 @@ const App = () => {
     <>
       <Timer handleShowSettings={handleShowSettings} mine={mine} />
       <Controls />
-      <Board mine={mine}/>
+      <Board mine={mine} />
       <Social />
-      <Settings handleShowSettings={handleShowSettings} showSettings={showSettings} mine={mine} setMine={setMine}/>
+      <Settings
+        showSettings={showSettings}
+        mine={mine}
+        setMine={setMine}
+      />
     </>
   )
 }
