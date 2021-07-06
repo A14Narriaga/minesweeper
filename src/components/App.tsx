@@ -1,10 +1,11 @@
 import { useState } from "react"
 import "../sass/App.scss"
 import Timer from "./Timer"
-import Controls from "./Controls"
+import Controls from "./Face"
 import Board from "./Board"
 import Social from "./Foot"
 import Settings from "./Settings"
+import Records from "./Records"
 
 const App = () => {
   const [showSettings, setShowSettings] = useState("hidde")
@@ -14,7 +15,7 @@ const App = () => {
 
   return (
     <>
-      <Timer handleShowSettings={handleShowSettings} mine={mine} />
+      <Timer handleShowSettings={handleShowSettings} />
       <Controls />
       <Board mine={mine} />
       <Social />
@@ -24,6 +25,7 @@ const App = () => {
         mine={mine}
         setMine={setMine}
       />
+      <Records></Records>
     </>
   )
 }

@@ -22,7 +22,6 @@ const Settings = ({
   return (
     <section className={`settings ${showSettings}`}>
       <div className="modal-btns">
-        <i className="help far fa-question-circle"></i>
         <i onClick={handleShowSettings} className="close fas fa-times"></i>
       </div>
       <div className="title">

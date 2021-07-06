@@ -19,8 +19,32 @@
         background-color: $hover-box-color;
       }
       i {
-        color: rgb(41, 36, 36);
+        color: rgba(34, 31, 31, 0.801);
         font-size: 1.2rem;
+      }
+      .num-1 {
+        color: rgb(240, 206, 206);
+      }
+      .num-2 {
+        color: rgb(198, 205, 235);
+      }
+      .num-3 {
+        color: rgb(173, 230, 185);
+      }
+      .num-4 {
+        color: rgb(231, 187, 231);
+      }
+      .num-5 {
+        color: rgb(235, 231, 186);
+      }
+      .num-6 {
+        color: rgb(176, 233, 225);
+      }
+      .num-7 {
+        color: rgb(213, 175, 235);
+      }
+      .num-8 {
+        color: rgb(240, 216, 193);
       }
     }
     .box-uncover {
