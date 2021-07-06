@@ -1,5 +1,5 @@
-@mixin records {
-  .records-wrapper {
+@mixin howToPlay {
+  .howToPlay-wrapper {
     background-color: $background-color-blur;
     color: $text-settings-color;
     backdrop-filter: blur(0.5rem);
@@ -12,11 +12,11 @@
     left: 50%;
     top: 43%;
     transform: translate(-50%, -50%);
-    .records {
+    .howToPlay {
       border: 3px solid $primary-color;
       padding: 1.5rem 2rem 1rem 2rem;
       border-radius: 0.5rem;
-      .records-close {
+      .howToPlay-close {
         display: flex;
         justify-content: flex-end;
         .close {
@@ -28,7 +28,7 @@
           }
         }
       }
-      .records-title {
+      .howToPlay-title {
         margin-top: -1rem;
         display: flex;
         justify-content: center;

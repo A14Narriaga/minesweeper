@@ -6,6 +6,7 @@
 @import "./foot";
 @import "./settings";
 @import "./records";
+@import "./howToPlay";
 
 $background-color: rgb(223, 223, 223);
 $primary-color: rgb(0, 86, 126);
@@ -40,4 +41,6 @@ body {
   @include board;
   @include foot;
   @include settings;
+  @include records;
+  @include howToPlay;
 }
