@@ -15,7 +15,7 @@ const App = () => {
   // const [showColorPicker, setShowColorPicker] = useState("hidde")
   // const [theme, setTheme] = useState("white")
   // const [colorTheme, setColorTheme] = useState("blue")
-  const [mine, setMine] = useState("virus")
+  const [mine, setMine] = useState("fa fa-virus")
 
   const handleShowSettings = () => setShowSettings(s => (s === "hidde" ? "" : "hidde"))
   const handleShowRecords = () => setShowRecords(r => (r === "hidde" ? "" : "hidde"))
