@@ -10,7 +10,7 @@ const generateBoard = ({ rows, cols }: { rows: number; cols: number }) => {
   const randomCell = (): { row: number; col: number } => {
     return { row: Math.floor(Math.random() * rows), col: Math.floor(Math.random() * cols) }
   }
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 10; i++) {
     const { row, col } = randomCell()
     board[row][col].type = "mine"
   }
@@ -66,7 +66,7 @@ const Board = ({ mine }: { mine: string }) => {
           >
             {!cover ? (
               type === "mine" ? (
-                <i className={`fa fa-${mine}`}></i>
+                <i className={mine}></i>
               ) : (
                 <i className={`num-${type}`}>{type}</i>
               )

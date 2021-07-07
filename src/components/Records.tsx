@@ -14,14 +14,36 @@ const Records = ({
         <div className="records-title">
           <p>🏆 Records 🏆</p>
         </div>
-        <div className="records-table">
-          <table>
+        <table className="records-table">
+          <thead>
             <tr>
               <th>Name</th>
               <th>Time</th>
             </tr>
-          </table>
-        </div>
+          </thead>
+          <tbody>
+            <tr>
+              <td>---</td>
+              <td>00:00</td>
+            </tr>
+            <tr>
+              <td>---</td>
+              <td>00:00</td>
+            </tr>
+            <tr>
+              <td>---</td>
+              <td>00:00</td>
+            </tr>
+            <tr>
+              <td>---</td>
+              <td>00:00</td>
+            </tr>
+            <tr>
+              <td>---</td>
+              <td>00:00</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </section>
   )

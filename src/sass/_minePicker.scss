@@ -1,0 +1,23 @@
+@mixin minePicker {
+  .mine-picker {
+    background-color: $background-color;
+    position: fixed;
+    right: 1.6rem;
+    top: 8.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: $primary-color solid 2px;
+    .picker {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      i {
+        color: $primary-color;
+        &:hover {
+            color: $primary-color-hover;
+            cursor: pointer;
+        }
+      }
+    }
+  }
+}

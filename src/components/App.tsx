@@ -12,6 +12,9 @@ const App = () => {
   const [showSettings, setShowSettings] = useState("hidde")
   const [showRecords, setShowRecords] = useState("hidde")
   const [showHowToPlay, setShowHowToPlay] = useState("hidde")
+  // const [showColorPicker, setShowColorPicker] = useState("hidde")
+  // const [theme, setTheme] = useState("white")
+  // const [colorTheme, setColorTheme] = useState("blue")
   const [mine, setMine] = useState("virus")
 
   const handleShowSettings = () => setShowSettings(s => (s === "hidde" ? "" : "hidde"))

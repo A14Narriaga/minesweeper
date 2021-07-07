@@ -1,4 +1,5 @@
 import { useState } from "react"
+import MinePicker from "./MinePicker"
 
 const Settings = ({
   showSettings,
@@ -19,6 +20,9 @@ const Settings = ({
   const [mines, setMines] = useState(minMines)
   const maxMines = (width * height) / 2
 
+  const [showMinePicker, setShowMinePicker] = useState("hidde")
+  const handleShowMinePicker = () => setShowMinePicker(mp => (mp === "hidde" ? "" : "hidde"))
+
   return (
     <section className={`settings-wrapper ${showSettings}`}>
       <section className="settings">
@@ -29,54 +33,46 @@ const Settings = ({
           <p>Settings</p>
         </div>
         <div className="setting">
-          <p>Theme</p>
-          <div className="options">
-            <button className="opc opc-selected">
+          <section className="option">
+            <p>Theme</p>
+            <button className="opc-btn">
               <div className="theme-white">
                 <div className="theme-blue" />
               </div>
             </button>
-            <button className="opc">
-              <div className="theme-white">
-                <div className="theme-red" />
-              </div>
+          </section>
+          <section className="option">
+            <p>Mine</p>
+            <button className="opc-btn" onClick={handleShowMinePicker}>
+              <i className={mine} />
             </button>
-          </div>
-        </div>
-        <div className="setting">
-          <p>Mine</p>
-          <div className="options">
-            <button onClick={() => setMine("virus")} className="opc">
-              <i className={`fa fa-virus`} />
-            </button>
-            <button onClick={() => setMine("paw")} className="opc opc-selected">
-              <i className="fas fa-paw" />
-            </button>
-            <button onClick={() => setMine("bahai")} className="opc">
-              <i className="fas fa-bahai" />
-            </button>
-          </div>
+            <MinePicker
+              showMinePicker={showMinePicker}
+              handleShowMinePicker={handleShowMinePicker}
+              setMine={setMine}
+            />
+          </section>
         </div>
         <div className="level-setting">
           <p>Level</p>
           <button className="level-opc">
             <p>
-              Easy - 10x10 <i className={`fa fa-${mine}`}> 10</i>
+              Easy - 10x10 <i className={mine}> 10</i>
             </p>
           </button>
           <button className="level-opc opc-selected">
             <p>
-              Normal - 16x16 <i className={`fa fa-${mine}`}> 40</i>
+              Normal - 16x16 <i className={mine}> 40</i>
             </p>
           </button>
           <button className="level-opc">
             <p>
-              Hard - 16x30 <i className={`fa fa-${mine}`}> 99</i>
+              Hard - 16x30 <i className={mine}> 99</i>
             </p>
           </button>
           <button className="level-opc">
             <p>
-              Custom - {`${width}x${height}`} <i className={`fa fa-${mine}`}>{` ${mines}`}</i>
+              Custom - {`${width}x${height}`} <i className={mine}>{` ${mines}`}</i>
             </p>
             <section className="custom">
               <div className="sider-wrapper">
@@ -109,7 +105,7 @@ const Settings = ({
                 ></input>
               </div>
               <div className="sider-wrapper">
-                <i className={`fa fa-${mine}`}></i>
+                <i className={mine}></i>
                 <input
                   type="range"
                   min={minMines}
