@@ -10,8 +10,9 @@
     width: 90%;
     position: absolute;
     left: 50%;
-    top: 43%;
+    top: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1), 0 0 0 1000px rgba(46, 42, 42, 0.788);
     .howToPlay {
       border: 3px solid $primary-color;
       padding: 1.5rem 2rem 1rem 2rem;
