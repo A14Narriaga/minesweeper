@@ -1,11 +1,11 @@
-const Controls = () => {
+const Face = ({ face, setFace }: { face: string; setFace: any }) => {
   return (
     <section className="face-wrapper">
       <hr />
-      <button className="face">😄</button>
+      <button onClick={setFace("😄")} className="face">{face}</button>
       <hr />
     </section>
   )
 }
 
-export default Controls
+export default Face

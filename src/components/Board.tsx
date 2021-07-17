@@ -5,7 +5,7 @@ type cell = { cover: boolean | ""; type: "mine" | number | "" }
 // Referenicas en JS
 const generateBoard = ({ rows, cols }: { rows: number; cols: number }) => {
   const board = Array.from(Array(rows)).map(() =>
-    Array.from(Array(cols)).map(_ => ({ cover: false, type: "" } as cell))
+    Array.from(Array(cols)).map(_ => ({ cover: true, type: "" } as cell))
   ) as Array<Array<cell>>
   const randomCell = (): { row: number; col: number } => {
     return { row: Math.floor(Math.random() * rows), col: Math.floor(Math.random() * cols) }
@@ -38,6 +38,25 @@ const reducer = (board: Array<Array<cell>>, accion: setCover) => {
   if (type === "setCover") {
     const newBoard = [...board]
     newBoard[i][j].cover = false
+    if (newBoard[i][j].type === "mine") {
+      // End game
+    } else if (newBoard[i][j].type === "") {
+      // Algorithm
+      const movesAxis = [-1, 0, 1]
+      for (const dx of movesAxis) {
+        for (const dy of movesAxis) {
+          if (newBoard[i + dx]?.[j + dy]?.type === "") {
+            // Recursividad
+          } else if (newBoard[i + dx]?.[j + dy]?.type === "mine") {
+            // End game
+          } else {
+            if (newBoard[i + dx]?.[j + dy]?.cover) {
+              newBoard[i + dx][j + dy].cover = false
+            }
+          }
+        }
+      }
+    }
     return newBoard
   }
   return board

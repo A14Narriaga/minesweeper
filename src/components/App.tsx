@@ -15,6 +15,8 @@ const App = () => {
   // const [showColorPicker, setShowColorPicker] = useState("hidde")
   // const [theme, setTheme] = useState("white")
   // const [colorTheme, setColorTheme] = useState("blue")
+  type faceTypes = "😄" | "🤔" | "😎" | "😥"
+  const [face, setFace] = useState<faceTypes>("😄")
   const [mine, setMine] = useState("fa fa-virus")
 
   const handleShowSettings = () => setShowSettings(s => (s === "hidde" ? "" : "hidde"))
@@ -28,7 +30,7 @@ const App = () => {
         handleShowRecords={handleShowRecords}
         handleShowHowToPlay={handleShowHowToPlay}
       />
-      <Face />
+      <Face face={face} setFace={setFace} />
       <Board mine={mine} />
       <Social />
       <Settings
