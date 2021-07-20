@@ -1,6 +1,12 @@
-import { useReducer } from "react"
+import { useEffect, useReducer } from "react"
 
 type cell = { cover: boolean | ""; type: "mine" | number | "" }
+
+const initialState = {
+  board: [] as Array<Array<cell>>,
+  isRunning: false as boolean,
+}
+type boardState = typeof initialState
 
 // Referenicas en JS
 const generateBoard = ({ rows, cols }: { rows: number; cols: number }) => {
@@ -29,39 +35,43 @@ const generateBoard = ({ rows, cols }: { rows: number; cols: number }) => {
       }
     }
   }
-  return board
+  return { board: board, isRunning: false } as boardState
 }
 
-type setCover = { type: "setCover"; i: number; j: number }
-const reducer = (board: Array<Array<cell>>, accion: setCover) => {
-  const { type, i, j } = accion
-  if (type === "setCover") {
-    const newBoard = [...board]
-    const unconverBoard = (i: number, j: number) => {
-      if (newBoard[i]?.[j]?.cover) {
-        newBoard[i][j].cover = false
-        if (newBoard[i]?.[j]?.type === "") {
-          const movesAxis = [-1, 0, 1]
-          for (const dx of movesAxis) {
-            for (const dy of movesAxis) {
-              if (newBoard[i + dx]?.[j + dy]?.type === "") unconverBoard(i + dx, j + dy)
-              else if (newBoard[i + dx]?.[j + dy]?.type === "mine") continue
-              else {
-                if (newBoard[i + dx]?.[j + dy]?.cover) newBoard[i + dx][j + dy].cover = false
+type actions = { type: "setCover"; i: number; j: number }
+const reducer = (state: boardState, action: actions) => {
+  const { type, i, j } = action
+  switch (type) {
+    case "setCover":
+      const newBoard = [...state.board]
+      const unconverBoard = (i: number, j: number) => {
+        if (newBoard[i]?.[j]?.cover) {
+          state.isRunning = true
+          newBoard[i][j].cover = false
+          if (newBoard[i]?.[j]?.type === "mine") state.isRunning = false
+          if (newBoard[i]?.[j]?.type === "") {
+            const movesAxis = [-1, 0, 1]
+            for (const dx of movesAxis) {
+              for (const dy of movesAxis) {
+                if (newBoard[i + dx]?.[j + dy]?.type === "") unconverBoard(i + dx, j + dy)
+                else if (newBoard[i + dx]?.[j + dy]?.type === "mine") continue
+                else {
+                  if (newBoard[i + dx]?.[j + dy]?.cover) newBoard[i + dx][j + dy].cover = false
+                }
               }
             }
           }
         }
       }
-    }
-    unconverBoard(i, j)
-    return newBoard
+      unconverBoard(i, j)
+      return { board: newBoard, isRunning: state.isRunning } as boardState
+    default:
+      return state
   }
-  return board
 }
 
 const Board = ({ mine, setFace }: { mine: string; setFace: any }) => {
-  const [board, dispatchBoard] = useReducer(reducer, [], () =>
+  const [stateBoard, dispatchBoard] = useReducer(reducer, initialState, () =>
     generateBoard({ rows: 10, cols: 10 })
   )
 
@@ -70,16 +80,20 @@ const Board = ({ mine, setFace }: { mine: string; setFace: any }) => {
     dispatchBoard({ type: "setCover", i, j })
   }
 
+  useEffect(() => {
+    console.log(stateBoard.isRunning)
+  }, [stateBoard.isRunning])
+
   return (
     <section
       className="board"
       style={{
-        gridTemplateColumns: `repeat(${board.length}, 1fr)`,
-        width: `${2.05 * board.length + 0.95}rem`,
-        height: `${2.05 * board[0].length + 0.95}rem`,
+        gridTemplateColumns: `repeat(${stateBoard.board.length}, 1fr)`,
+        width: `${2.05 * stateBoard.board.length + 0.95}rem`,
+        height: `${2.05 * stateBoard.board[0].length + 0.95}rem`,
       }}
     >
-      {board.map((row, i) =>
+      {stateBoard.board.map((row, i) =>
         row.map(({ cover, type }, j) => (
           <button
             key={`${i}${j}`}
