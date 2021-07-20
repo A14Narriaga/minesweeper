@@ -1,8 +1,8 @@
-const Face = ({ face, setFace }: { face: string; setFace: any }) => {
+const Face = ({ face }: { face: string }) => {
   return (
     <section className="face-wrapper">
       <hr />
-      <button onClick={setFace("😄")} className="face">{face}</button>
+      <button className="face">{face}</button>
       <hr />
     </section>
   )

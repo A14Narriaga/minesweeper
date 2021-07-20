@@ -37,35 +37,38 @@ const reducer = (board: Array<Array<cell>>, accion: setCover) => {
   const { type, i, j } = accion
   if (type === "setCover") {
     const newBoard = [...board]
-    newBoard[i][j].cover = false
-    if (newBoard[i][j].type === "mine") {
-      // End game
-    } else if (newBoard[i][j].type === "") {
-      // Algorithm
-      const movesAxis = [-1, 0, 1]
-      for (const dx of movesAxis) {
-        for (const dy of movesAxis) {
-          if (newBoard[i + dx]?.[j + dy]?.type === "") {
-            // Recursividad
-          } else if (newBoard[i + dx]?.[j + dy]?.type === "mine") {
-            // End game
-          } else {
-            if (newBoard[i + dx]?.[j + dy]?.cover) {
-              newBoard[i + dx][j + dy].cover = false
+    const unconverBoard = (i: number, j: number) => {
+      if (newBoard[i]?.[j]?.cover) {
+        newBoard[i][j].cover = false
+        if (newBoard[i]?.[j]?.type === "") {
+          const movesAxis = [-1, 0, 1]
+          for (const dx of movesAxis) {
+            for (const dy of movesAxis) {
+              if (newBoard[i + dx]?.[j + dy]?.type === "") unconverBoard(i + dx, j + dy)
+              else if (newBoard[i + dx]?.[j + dy]?.type === "mine") continue
+              else {
+                if (newBoard[i + dx]?.[j + dy]?.cover) newBoard[i + dx][j + dy].cover = false
+              }
             }
           }
         }
       }
     }
+    unconverBoard(i, j)
     return newBoard
   }
   return board
 }
 
-const Board = ({ mine }: { mine: string }) => {
+const Board = ({ mine, setFace }: { mine: string; setFace: any }) => {
   const [board, dispatchBoard] = useReducer(reducer, [], () =>
     generateBoard({ rows: 10, cols: 10 })
   )
+
+  const startGame = (i: number, j: number) => {
+    setFace("🤔")
+    dispatchBoard({ type: "setCover", i, j })
+  }
 
   return (
     <section
@@ -80,7 +83,7 @@ const Board = ({ mine }: { mine: string }) => {
         row.map(({ cover, type }, j) => (
           <button
             key={`${i}${j}`}
-            onClick={() => dispatchBoard({ type: "setCover", i, j })}
+            onClick={() => startGame(i, j)}
             className={`box box-${cover ? "" : "uncover"}`}
           >
             {!cover ? (

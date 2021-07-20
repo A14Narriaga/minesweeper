@@ -30,8 +30,8 @@ const App = () => {
         handleShowRecords={handleShowRecords}
         handleShowHowToPlay={handleShowHowToPlay}
       />
-      <Face face={face} setFace={setFace} />
-      <Board mine={mine} />
+      <Face face={face} />
+      <Board mine={mine} setFace={setFace} />
       <Social />
       <Settings
         showSettings={showSettings}
